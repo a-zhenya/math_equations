@@ -17,7 +17,7 @@ template = r"""
 \pagestyle{empty}
 \setlength\columnsep{1.7pc}
 \begin{document}
-\begin{multicols}{4}
+\begin{multicols}{3}
 \begin{enumerate}[font=\tiny]
 % {equations}
 \end{enumerate}
@@ -28,15 +28,14 @@ template = r"""
 allow_1 = True
 
 def generate_triplet():
-	x = randrange(1 if allow_1 else 2, 19 if allow_1 else 12)
-	if x >= 10:
-		x += 1
-	if x > 12:
-		y = 1
-	elif x == 12:
-		y = randrange(1 if allow_1 else 2, 4)
-	else:
-		y = randrange(2, 10)
+	while True:
+		x = randrange(21, 100)
+		if x % 10 != 0 and x % 11 != 0:
+			break
+	while True:
+		y = randrange(21, 100)
+		if y % 10 != 0 and y % 11 != 0:
+			break
 	return x, y, x * y
 
 def maybe_shuffle(x, y, z):
@@ -45,12 +44,12 @@ def maybe_shuffle(x, y, z):
 	return y, x, z
 
 def add_zeros(x, y, z):
-	zx = randrange(1 if x == 1 else 0, 3)
-	zy = randrange(1 if y == 1 else 0, min(3, 5 - zx - (len(str(z)) - 1)))
+	zx = randrange(1, 3)
+	zy = randrange(1, 2 if zx == 2 else 3)
 	return x*10**zx, y*10**zy, z*10**zx*10**zy
 
 def generate_equation(x, y, z):
-	if randrange(2):
+	if randrange(1) == 0:
 		return str(x), '*', str(y)
 	else:
 		return str(z), ':', str(x)
@@ -103,7 +102,7 @@ def latex():
 	system(f"pdflatex {filename}")
 
 def main():
-	equations = generate_equations(132)
+	equations = generate_equations(101)
 	write_files(template, equations)
 	if tex:
 		latex()

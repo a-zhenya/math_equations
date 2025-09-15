@@ -3,7 +3,7 @@
 from random import shuffle;
 from os import system
 
-tex = False
+tex = True
 filename = 'equations.tex' if tex else 'equations.txt'
 template = r"""
 \documentclass[a4paper,12pt]{article}
@@ -41,6 +41,7 @@ def generate_coefs():
 			b = -(x1 + x2)
 			q = x1 * x2
 			yield b, q
+			yield b*10, q*100
 
 def type_eq(b, q):
 	if b == 1:
@@ -73,14 +74,14 @@ def main():
 		equations = equations[:LIMIT]
 
 	if tex:
-		with open(filename, 'w') as eq:
-			eq.write(template.replace("% {equations}",
+		with open(filename, 'w') as f:
+			f.write(template.replace("% {equations}",
 				"\n".join( (f"\\item ${e}$" for e in equations) ) ))
 		latex()
 	else:
-		with open(filename, 'w') as eq:
-			print(len(equations), 'equations', file=eq)
-			eq.write("\n".join(equations))
+		with open(filename, 'w') as f:
+			print(len(equations), 'equations', file=f)
+			print("\n".join(equations), file=f)
 
 
 
