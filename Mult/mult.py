@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from random import randrange
 from itertools import chain
@@ -102,7 +102,7 @@ def latex():
 	system(f"pdflatex {filename}")
 
 def main():
-	equations = generate_equations(101)
+	equations = generate_equations(102)
 	write_files(template, equations)
 	if tex:
 		latex()
