@@ -15,6 +15,9 @@ template = r"""
 \usepackage{multicol}
 \usepackage{enumitem}
 \pagestyle{empty}
+\makeatletter
+\renewcommand\@oddfoot{\vbox{\hbox to \textwidth{\hfill Printed: \today\hfill}\vspace{1pc}}}
+\makeatother
 \setlength\columnsep{1.7pc}
 \begin{document}
 \begin{multicols}{3}
