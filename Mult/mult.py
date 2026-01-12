@@ -16,7 +16,7 @@ template = r"""
 \usepackage{enumitem}
 \pagestyle{empty}
 \makeatletter
-\renewcommand\@oddfoot{\vbox{\hbox to \textwidth{\hfill Printed: \today\hfill}\vspace{1pc}}}
+\renewcommand\@oddfoot{Printed: \today\hfill}
 \makeatother
 \setlength\columnsep{1.7pc}
 \begin{document}

@@ -1,6 +1,7 @@
 *.aux
 *.log
 *.tex
+*.synctex.gz
 *.txt
 *.pyc
 **/__pycache__/**
